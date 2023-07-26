@@ -1,5 +1,5 @@
 {
-  "name": "project-costs---api",
+  "name": "project-costs-api",
   "version": "1.0.0",
   "description": "api for project costs",
   "main": "index.js",
@@ -11,6 +11,7 @@
   "author": "Victor_Santos",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.18.2",
     "mongoose": "^7.4.1"
   },
