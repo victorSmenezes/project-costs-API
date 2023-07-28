@@ -1,4 +1,4 @@
-const projects = []
+import Project from "../models/Project.js"
 
 const categories = [
   {
@@ -19,9 +19,23 @@ const categories = [
   }
 ]
 
-async function showCategories(request, response) {
-  console.log(request.body)
+function showCategories(request, response) {
   response.status(200).json(categories)
+  console.log(request)
 }
 
-export { showCategories }
+async function createProject(request, response) {
+  const project = request.body
+
+  const newProject = await Project.create(project)
+
+  return response.status(201).json(newProject)
+}
+
+async function getProjects(request, response) {
+  const project = await Project.find()
+
+  return response.status(200).json(project)
+}
+
+export { showCategories, createProject, getProjects }
