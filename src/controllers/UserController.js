@@ -38,4 +38,28 @@ async function getProjects(request, response) {
   return response.status(200).json(project)
 }
 
-export { showCategories, createProject, getProjects }
+async function getProjectsId(request, response) {
+  const Idproject = request.params.id
+
+  await Project.findById({ id: Idproject })
+
+  return response.status(201).json({ response: "Id project find" })
+}
+
+async function deleteProject(request, response) {
+  const Idproject = request.params.id
+
+  await Project.findByIdAndDelete({ id: Idproject })
+
+  return response.status(201).json({ response: "Project Deleted" })
+}
+
+async function updateProject(request, response) {
+  const Idproject = request.params.id
+
+  await Project.findByIdAndUpdate({ id: Idproject })
+
+  return response.status(201).json({ response: "Project Updated" })
+}
+
+export { showCategories, createProject, getProjects, getProjectsId, deleteProject, updateProject }

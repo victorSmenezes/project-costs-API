@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createProject, getProjects, showCategories } from "./controllers/UserController.js";
+import { createProject, deleteProject, getProjects, getProjectsId, showCategories, updateProject } from "./controllers/UserController.js";
 
 const routes = Router()
 
@@ -12,6 +12,8 @@ routes.get('/categories', showCategories)
 
 routes.post('/projects', createProject)
 routes.get('/projects', getProjects)
-routes.get('/projects/:id', getProjects)
+routes.get('/projects/:id', getProjectsId)
+routes.delete('/projects/:id', deleteProject)
+routes.patch('/projects/:id', updateProject)
 
 export default routes

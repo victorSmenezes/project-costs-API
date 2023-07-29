@@ -1,21 +1,25 @@
 import mongoose from "mongoose";
 
 const projectSchema = new mongoose.Schema({
+  id: {
+    type: String,
+    require: true
+  },
   name: {
     type: String,
     require: true
   },
   budget: {
-    type: String, 
+    type: String,
     require: true,
   },
-  category: [{
+  category: {
     id: Number,
-    name: String
-  }],
+    name: String,
+  },
   cost: {
     type: Number,
-    require: false
+    require: false,
   },
   services: [
     {
