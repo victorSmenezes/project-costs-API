@@ -41,15 +41,15 @@ async function getProjects(request, response) {
 async function getProjectsId(request, response) {
   const Idproject = request.params.id
 
-  await Project.findById({ id: Idproject })
+  const project = await Project.findOne({ id: Idproject })
 
-  return response.status(201).json({ response: "Id project find" })
+  return response.status(200).json({ project });
 }
 
 async function deleteProject(request, response) {
   const Idproject = request.params.id
 
-  await Project.findByIdAndDelete({ id: Idproject })
+  await Project.findOneAndDelete({ id: Idproject })
 
   return response.status(201).json({ response: "Project Deleted" })
 }
@@ -57,7 +57,15 @@ async function deleteProject(request, response) {
 async function updateProject(request, response) {
   const Idproject = request.params.id
 
-  await Project.findByIdAndUpdate({ id: Idproject })
+  const { name, budget, category, cost, services } = request.body
+
+  await Project.findOneAndUpdate({ id: Idproject }, {
+    name,
+    budget,
+    category,
+    cost,
+    services,
+  })
 
   return response.status(201).json({ response: "Project Updated" })
 }
