@@ -20,54 +20,93 @@ const categories = [
 ]
 
 function showCategories(request, response) {
-  response.status(200).json(categories)
-  console.log(request)
+  try {
+    response.status(200).json(categories)
+  }
+  catch (error) {
+    response.status(500).json({ error: "Failed to get categories" })
+  }
 }
 
 async function createProject(request, response) {
   const project = request.body
 
-  const newProject = await Project.create(project)
+  try {
+    const newProject = await Project.create(project)
 
-  return response.status(201).json(newProject)
+
+    return response.status(201).json(newProject)
+  }
+  catch (error) {
+    return response.status(500).json({ error: "Failed to criate a new project" })
+  }
 }
 
 async function getProjects(request, response) {
-  const project = await Project.find()
+  try {
+    const project = await Project.find()
 
-  return response.status(200).json(project)
+    if (!project) {
+      return response.status(404).json({ error: "Projects not found" });
+    }
+
+    return response.status(200).json(project)
+  }
+  catch (error) {
+    response.status(500).json({ error: "Failed to get projects" })
+  }
 }
 
 async function getProjectsId(request, response) {
   const Idproject = request.params.id
 
-  const project = await Project.findOne({ id: Idproject })
+  try {
+    const project = await Project.findOne({ id: Idproject })
 
-  return response.status(200).json({ project });
+    if (!project) {
+      return response.status(404).json({ error: "Project not found" });
+    }
+
+    return response.status(200).json({ project });
+  }
+  catch (error) {
+    return response.status(500).json({ error: "Falied to get project" })
+  }
+
 }
 
 async function deleteProject(request, response) {
   const Idproject = request.params.id
 
-  await Project.findOneAndDelete({ id: Idproject })
+  try {
+    await Project.findOneAndDelete({ id: Idproject })
 
-  return response.status(201).json({ response: "Project Deleted" })
+    return response.status(201).json({ response: "Project Deleted" })
+  }
+  catch (error) {
+    return response.status(500).json({ error: "Error to delete project" })
+  }
 }
 
 async function updateProject(request, response) {
   const Idproject = request.params.id
 
-  const { name, budget, category, cost, services } = request.body
+  try {
+    const { name, budget, category, cost, services } = request.body
 
-  await Project.findOneAndUpdate({ id: Idproject }, {
-    name,
-    budget,
-    category,
-    cost,
-    services,
-  })
+    await Project.findOneAndUpdate({ id: Idproject }, {
+      name,
+      budget,
+      category,
+      cost,
+      services,
+    })
 
-  return response.status(201).json({ response: "Project Updated" })
+    return response.status(201).json({ response: "Project Updated" })
+  }
+  catch (error) {
+    return response.status(500).json({ error: "Failed to update project" })
+  }
 }
 
 export { showCategories, createProject, getProjects, getProjectsId, deleteProject, updateProject }
