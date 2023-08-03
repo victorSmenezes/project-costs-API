@@ -1,7 +1,11 @@
 import { Router } from "express";
-import { createProject, deleteProject, getProjects, getProjectsId, showCategories, updateProject } from "./controllers/UserController.js";
+import { ApiON, createProject, deleteProject, getProjects, getProjectsId, showCategories, updateProject } from "./controllers/UserController.js";
 
 const routes = Router()
+
+// Server on 
+
+routes.get('/', ApiON)
 
 // Rotas categories
 

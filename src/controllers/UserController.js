@@ -19,6 +19,15 @@ const categories = [
   }
 ]
 
+function ApiON(request, response) {
+  try {
+    return response.json("hello world");
+  }
+  catch (error) {
+    response.status(500).json("Failed API")
+  }
+}
+
 function showCategories(request, response) {
   try {
     response.status(200).json(categories)
@@ -109,4 +118,4 @@ async function updateProject(request, response) {
   }
 }
 
-export { showCategories, createProject, getProjects, getProjectsId, deleteProject, updateProject }
+export { showCategories, createProject, getProjects, getProjectsId, deleteProject, updateProject, ApiON }
