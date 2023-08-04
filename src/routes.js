@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { ApiON, createProject, deleteProject, getProjects, getProjectsId, showCategories, updateProject } from "./controllers/UserController.js";
 
-const routes = Router()
+const routes = new Router()
 
 // Server on 
 
