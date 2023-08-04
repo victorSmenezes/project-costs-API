@@ -7,13 +7,11 @@
     }
   ],
   "routes":[
-    {
-      "src": "/api/(.*)",
-      "dest": "src/routes.js"
-    },
+
     {
       "src": "src/(.*)",
       "dest": "src/index.js"
     }
-  ]
+  ],
+  "rewrites": [{ "source": "/(.*)", "destination": "/" }]
 }
