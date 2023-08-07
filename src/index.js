@@ -1,7 +1,8 @@
 import express from "express";
 import cors from 'cors';
-import routes from "./routes.js";
+
 import connectDatabase from "./database/db.js";
+import routes from "./routes.js";
 
 
 
