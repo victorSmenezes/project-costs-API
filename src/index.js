@@ -19,7 +19,7 @@ app.use(cors(corsOptions))
 
 app.use(routes)
 
-const port = process.env.PORT || 4340;
+const port = process.env.port || 4340;
 
 connectDatabase()
   .then(() => {
